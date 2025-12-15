@@ -1,6 +1,6 @@
 # ✈️ Udaan - Flight Booking System
 
-A modern, full-stack flight booking application with integrated wallet system, built with the MERN stack and deployed on Render + Vercel.
+A modern, full‑stack flight booking application with an integrated wallet system, built with the MERN stack and prepared for deployment on Render (backend) and Vercel (frontend).
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)
@@ -8,367 +8,391 @@ A modern, full-stack flight booking application with integrated wallet system, b
 
 ---
 
+Table of contents
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Quick Start](#-quick-start)
+- [Environment Variables](#-environment-variables)
+- [Seed Data & Sample Credentials](#-seed-data--sample-credentials)
+- [API Reference (examples)](#-api-reference-examples)
+- [Deployment](#-deployment)
+- [Testing & Health Checks](#-testing--health-checks)
+- [Troubleshooting](#-troubleshooting)
+- [Contributing & Governance](#-contributing--governance)
+- [License & Author](#-license--author)
+- [Acknowledgments](#-acknowledgments)
+- [Support](#-support)
+
+---
+
+## 📝 Overview
+
+This README is the canonical project overview for the repository:
+https://github.com/kritikasapkota/udaan-codebase
+
+It is written to be HR-friendly (clear installation steps, credentials for demo, and deployment notes). Keep secrets out of version control; use `.env` files and secret managers.
+
+---
+
 ## 🌟 Features
 
-### ✨ Core Functionality
-- **Flight Search & Booking**: Search flights by source, destination, and date
-- **User Authentication**: Secure JWT-based registration and login with strong password enforcement
-- **Digital Wallet**: Integrated wallet system for seamless payments
-- **Booking Management**: View, manage, and cancel bookings with PNR tracking
-- **PDF Tickets**: Download printable flight tickets
-- **Wallet Analytics**: Track spending with visual charts and transaction history
-- **Profile Management**: Update user details and view booking history
+Core:
+- Flight search & booking (source, destination, date)
+- JWT-based authentication and strong password policy
+- Integrated digital wallet with transactions and analytics
+- Booking management (view, cancel) and PNR tracking
+- PDF ticket generation (downloadable)
+- Responsive frontend with Tailwind CSS and Framer Motion
 
-### 🔒 Security Features
-- **Strong Password Policy**: Enforced password requirements:
-  - Minimum 8 characters
-  - At least one uppercase letter
-  - At least one lowercase letter
-  - At least one number
-  - At least one special character
-- **JWT Authentication**: Secure token-based authentication
-- **CORS Protection**: Configured origin whitelisting
-- **Password Hashing**: bcrypt encryption for user credentials
+Security:
+- Strong password requirements (server-side validation)
+- JWT authentication and secured routes
+- bcrypt password hashing
+- CORS origin whitelisting
 
-### 💎 User Experience
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
-- **Real-time Validation**: Instant feedback on password strength during registration
-- **Clean UI**: Modern interface with Tailwind CSS and Framer Motion animations
-- **Transaction History**: Detailed wallet transaction logs with filtering
+User Experience:
+- Real-time password strength validation during registration
+- Wallet transaction charts
+- Printable PDF tickets
 
 ---
 
 ## 🏗️ Tech Stack
 
-### Frontend
-- **React 19** - UI library
-- **Vite** - Build tool and dev server
-- **React Router** - Client-side routing
-- **Axios** - HTTP client
-- **Tailwind CSS** - Utility-first styling
-- **Framer Motion** - Animations
-- **Recharts** - Data visualization
-- **Lucide React** - Icon library
+Frontend
+- React 19, Vite, React Router, Axios, Tailwind CSS, Framer Motion, Recharts, Lucide React
 
-### Backend
-- **Node.js** - Runtime environment
-- **Express** - Web framework
-- **MongoDB** - NoSQL database
-- **Mongoose** - ODM for MongoDB
-- **JWT** - Authentication tokens
-- **bcryptjs** - Password hashing
-- **PDFKit** - PDF ticket generation
-- **CORS** - Cross-origin resource sharing
+Backend
+- Node.js, Express, MongoDB (Atlas), Mongoose, JWT, bcryptjs, PDFKit, CORS
 
-### Deployment
-- **Vercel** - Frontend hosting
-- **Render** - Backend hosting
-- **MongoDB Atlas** - Cloud database
+Deployment
+- Vercel (frontend), Render (backend), MongoDB Atlas
 
 ---
 
 ## 📁 Project Structure
 
 ```
-Udaan-codebase/
+udaan-codebase/
 ├── backend/                # Express.js backend
-│   ├── config/            # Database configuration
-│   ├── controllers/       # Route controllers
-│   ├── middleware/        # Auth middleware
-│   ├── models/           # Mongoose models
-│   ├── routes/           # API routes
-│   ├── utils/            # PDF generation utilities
-│   ├── public/logos/     # Static assets
-│   ├── seed.js           # Database seeder
-│   ├── server.js         # Entry point
-│   ├── .env.example      # Environment template
-│   └── package.json      # Backend dependencies
+│   ├── config/             # DB & config
+│   ├── controllers/        # Route controllers
+│   ├── middleware/         # Auth & validation middleware
+│   ├── models/             # Mongoose models
+│   ├── routes/             # API routes
+│   ├── utils/              # PDF generation & helpers
+│   ├── public/logos/       # Static assets
+│   ├── seed.js             # Database seeder
+│   ├── server.js           # Entry point
+│   ├── .env.example        # Env template
+│   └── package.json        # Backend dependencies & scripts
 │
-├── frontend/             # React frontend
+├── frontend/               # React frontend
 │   ├── src/
-│   │   ├── components/   # Reusable components
-│   │   ├── context/      # React context (Auth)
-│   │   ├── pages/        # Route pages
-│   │   ├── services/     # API service layer
-│   │   ├── lib/          # Utilities
-│   │   └── assets/       # Images, fonts
-│   ├── public/           # Static files
-│   ├── .env.example      # Environment template
-│   ├── vite.config.js    # Vite configuration
-│   └── package.json      # Frontend dependencies
+│   │   ├── components/     # Reusable components
+│   │   ├── context/        # Auth context
+│   │   ├── pages/          # Route pages
+│   │   ├── services/       # API service layer
+│   │   ├── lib/            # Utilities
+│   │   └── assets/         # Images, fonts
+│   ├── public/             # Static files
+│   ├── .env.example        # Env template
+│   ├── vite.config.js      # Vite configuration
+│   └── package.json        # Frontend dependencies & scripts
 │
-├── DEPLOYMENT_GUIDE.md   # Detailed deployment instructions
-├── package.json          # Root workspace config
-└── README.md            # This file
+├── DEPLOYMENT_GUIDE.md     # Detailed deployment instructions
+├── CONTRIBUTING.md         # Contribution guidelines
+├── CODE_OF_CONDUCT.md      # Community guidelines
+├── LICENSE                 # MIT License
+├── package.json            # Root workspace scripts (install-all, dev)
+└── README.md               # This file
 ```
+
+Notes:
+- The root package.json should include convenience scripts (see Quick Start). If you don't have them, follow the alternative commands shown below.
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- **Node.js** >= 16.0.0
-- **MongoDB** Atlas account or local instance
-- **npm** or **yarn**
+Prerequisites
+- Node.js >= 16.0.0
+- MongoDB Atlas account or local MongoDB
+- npm (or yarn)
 
-### 1️⃣ Clone the Repository
+1) Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/udaan-flight-booking.git
-cd udaan-flight-booking
+git clone https://github.com/kritikasapkota/udaan-codebase.git
+cd udaan-codebase
 ```
 
-### 2️⃣ Install Dependencies
+2) Install dependencies
+
+Preferred (root workspace script)
 ```bash
-# Install all dependencies (root, frontend, backend)
 npm run install-all
 ```
 
-### 3️⃣ Configure Environment Variables
+If root script is not present, install manually:
+```bash
+# Backend
+cd backend
+npm install
 
-**Backend** (`backend/.env`):
-```env
-MONGO_URI=mongodb+srv://user:password@cluster.mongodb.net/airplane_mgmt
-JWT_SECRET=your-super-secret-jwt-key-change-this
-NODE_ENV=development
-PORT=5000
-FRONTEND_URL=http://localhost:5173
+# Frontend (in a new terminal)
+cd ../frontend
+npm install
 ```
 
-**Frontend** (`frontend/.env`):
-```env
-VITE_API_URL=http://localhost:5000/api
-```
+3) Configure environment variables
 
-### 4️⃣ Seed the Database (Optional)
+Create backend `.env` from `backend/.env.example` and frontend `.env` from `frontend/.env.example`. Example values below.
+
+4) Seed the database (optional, for demo/test)
 ```bash
 cd backend
 npm run seed
 ```
-This creates sample users and 25+ flights.
 
-**Sample credentials**:
-- Email: `john@example.com`
-- Password: `password123` (for seeded users; new users must use strong passwords)
+5) Run in development
 
-### 5️⃣ Run Development Servers
-
-**Option A: Run both concurrently** (from root):
+Option A: Root concurrent script (if present)
 ```bash
 npm run dev
 ```
 
-**Option B: Run separately**:
-
-Terminal 1 (Backend):
+Option B: Run separately
+Terminal 1 (backend):
 ```bash
 cd backend
 npm run dev
 ```
 
-Terminal 2 (Frontend):
+Terminal 2 (frontend):
 ```bash
 cd frontend
 npm run dev
 ```
 
-### 6️⃣ Access the Application
-- **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:5000/api
+6) Access the app
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5000/api
 
 ---
 
-## 📦 API Endpoints
+## 🔐 Environment Variables
 
-### Authentication
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| POST | `/api/auth/register` | Register new user | ❌ |
-| POST | `/api/auth/login` | Login user | ❌ |
-| GET | `/api/auth/me` | Get user profile | ✅ |
-| PUT | `/api/auth/me` | Update profile | ✅ |
+Backend (`backend/.env`)
+```
+MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/airplane_mgmt
+JWT_SECRET=CHANGE_THIS_TO_A_STRONG_RANDOM_STRING
+NODE_ENV=development
+PORT=5000
+FRONTEND_URL=http://localhost:5173
+```
 
-### Flights
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| GET | `/api/flights` | Search flights (query: source, destination, date) | ❌ |
-| GET | `/api/flights/all` | Get all flights | ❌ |
-| GET | `/api/flights/:id` | Get flight by ID | ❌ |
+Frontend (`frontend/.env`)
+```
+VITE_API_URL=http://localhost:5000/api
+```
 
-### Bookings
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| POST | `/api/bookings` | Create booking | ✅ |
-| GET | `/api/bookings/my-bookings` | Get user bookings | ✅ |
-| GET | `/api/bookings/:pnr/pdf` | Download ticket PDF | ✅ |
-| PUT | `/api/bookings/:pnr/cancel` | Cancel booking | ✅ |
-
-### Wallet
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| GET | `/api/wallet` | Get wallet balance | ✅ |
-| POST | `/api/wallet/add` | Add funds | ✅ |
-| GET | `/api/wallet/history` | Get transactions | ✅ |
+Security notes:
+- Never commit production secrets. Use Render/Vercel secret settings or a secrets manager.
+- Use a sufficiently long and random `JWT_SECRET` (e.g., 32+ chars).
 
 ---
 
-## 🔐 Password Requirements
+## 🧾 Seed Data & Sample Credentials
 
-New users must create passwords that meet these requirements:
-- ✅ At least **8 characters** long
-- ✅ Contains at least **one uppercase letter** (A-Z)
-- ✅ Contains at least **one lowercase letter** (a-z)
-- ✅ Contains at least **one number** (0-9)
-- ✅ Contains at least **one special character** (!@#$%^&*, etc.)
+The seeder creates demo users and sample flights for local testing. The seeded demo account password now follows the enforced strong password rules.
 
-**Example strong password**: `Udaan@2025!`
+Demo credentials (for local/dev demo only)
+- Email: `john@example.com`
+- Password: `Udaan@2025!`  (meets requirements: 10 chars, uppercase, lowercase, number, special)
 
-The frontend provides real-time visual feedback during registration, and the backend validates all passwords server-side for security.
+If you prefer weaker demo credentials for quick tests, explicitly document that these are development-only and NOT for production.
+
+---
+
+## 📦 API Reference (examples)
+
+Authentication
+- Register
+  - POST /api/auth/register
+  - Example curl:
+    ```bash
+    curl -X POST http://localhost:5000/api/auth/register \
+      -H "Content-Type: application/json" \
+      -d '{"name":"John Doe","email":"john@example.com","password":"Udaan@2025!"}'
+    ```
+  - Success: 201 Created with user object (no password) and token
+
+- Login
+  - POST /api/auth/login
+  - Example curl:
+    ```bash
+    curl -X POST http://localhost:5000/api/auth/login \
+      -H "Content-Type: application/json" \
+      -d '{"email":"john@example.com","password":"Udaan@2025!"}'
+    ```
+  - Success: 200 OK with JWT token (store `token`)
+
+Protected endpoints require Authorization header:
+- Header: Authorization: Bearer <token>
+
+Example: Get current user
+```bash
+curl -H "Authorization: Bearer <token>" http://localhost:5000/api/auth/me
+```
+
+Flights
+- Search flights
+  - GET /api/flights?source=DEL&destination=MUM&date=2025-12-25
+  - Example:
+    ```bash
+    curl "http://localhost:5000/api/flights?source=DEL&destination=MUM&date=2025-12-25"
+    ```
+
+Bookings
+- Create booking (protected)
+  - POST /api/bookings
+  - Body example:
+    {
+      "flightId": "<flightId>",
+      "passengers": [{"name":"John Doe","age":30,"seat":"12A"}],
+      "paymentMethod":"wallet" // or "card"
+    }
+  - Example curl:
+    ```bash
+    curl -X POST http://localhost:5000/api/bookings \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer <token>" \
+      -d '{"flightId":"<id>","passengers":[{"name":"John","age":30}],"paymentMethod":"wallet"}'
+    ```
+
+- Download ticket PDF
+  - GET /api/bookings/:pnr/pdf
+  - Example:
+    ```bash
+    curl -H "Authorization: Bearer <token>" http://localhost:5000/api/bookings/ABC123/pdf --output ticket.pdf
+    ```
+
+Wallet
+- Get wallet balance
+  - GET /api/wallet
+- Add funds
+  - POST /api/wallet/add
+  - Body: { "amount": 1000 }
+
+Responses & errors
+- Standardized JSON response format:
+  - Success: { success: true, data: ... }
+  - Error: { success: false, error: "Error message" }
+- Authentication protected endpoints return 401 Unauthorized if token is missing/invalid.
+- Validation errors return 400 with details (e.g., password does not meet requirements).
+
+For a full machine-readable API spec, consider adding an OpenAPI (Swagger) document in the repo.
 
 ---
 
 ## 🌐 Deployment
 
-For detailed deployment instructions, see [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md).
+See DEPLOYMENT_GUIDE.md for step-by-step deployment. Quick overview:
 
-### Quick Overview
+Backend (Render)
+1. Push to GitHub.
+2. Create a Web Service on Render.
+3. Set environment variables (MONGO_URI, JWT_SECRET, FRONTEND_URL).
+4. Deploy from `main` branch.
 
-**Backend (Render)**:
-1. Push code to GitHub
-2. Create Web Service on Render
-3. Set environment variables (MONGO_URI, JWT_SECRET, FRONTEND_URL)
-4. Deploy from `main` branch
+Frontend (Vercel)
+1. Import the GitHub repository in Vercel.
+2. Set root directory to `frontend`.
+3. Add `VITE_API_URL` environment variable.
+4. Deploy.
 
-**Frontend (Vercel)**:
-1. Import GitHub repository
-2. Set root directory to `frontend`
-3. Add `VITE_API_URL` environment variable
-4. Deploy
-
-**MongoDB Atlas**:
-1. Create free M0 cluster
-2. Whitelist IP addresses (or allow all)
-3. Create database user and get connection string
+MongoDB Atlas
+1. Create free cluster (M0).
+2. Configure network access (whitelist or allow current IP).
+3. Create database user and use connection string in `MONGO_URI`.
 
 ---
 
-## 🧪 Testing
+## 🧪 Testing & Health Checks
 
-### Manual Testing Workflow
-1. **Register** with a strong password (e.g., `Test@123`)
-2. **Login** with registered credentials
-3. **Search flights** by source/destination
-4. **Add funds** to wallet
-5. **Book a flight** and download ticket PDF
-6. **View bookings** and check transaction history
-7. **Cancel booking** to test refund flow
+Manual test workflow:
+1. Register a new user with a strong password.
+2. Login and capture token.
+3. Search flights and create a booking.
+4. Add funds to wallet and confirm balances.
+5. Download PDF ticket and verify contents.
+6. Cancel booking to test refund flow.
 
-### Backend Health Check
+Backend health check:
 ```bash
-curl https://your-backend.onrender.com/api/flights
-```
-Should return JSON array of flights.
-
----
-
-## 🛠️ Development Scripts
-
-### Root
-```bash
-npm run install-all    # Install all dependencies
-npm run dev           # Run frontend + backend concurrently
-```
-
-### Backend
-```bash
-npm start             # Production server
-npm run dev          # Development with nodemon
-npm run seed         # Seed database with sample data
-```
-
-### Frontend
-```bash
-npm run dev          # Start Vite dev server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
+curl https://<your-backend>.onrender.com/api/flights
+# should return a JSON array of flights (200 OK)
 ```
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Issue: Cannot connect to MongoDB
-- Verify `MONGO_URI` is correct in `.env`
-- Check MongoDB Atlas network access (whitelist your IP)
-- Ensure database user has correct permissions
+Cannot connect to MongoDB:
+- Verify `MONGO_URI` and Atlas network settings.
+- Ensure DB user has correct permissions.
 
-### Issue: CORS errors in browser
-- Verify `FRONTEND_URL` in backend `.env` matches exact frontend origin
-- No trailing slash in URLs
-- Check browser console for specific origin mismatch
+CORS errors:
+- Check `FRONTEND_URL` in backend env matches frontend origin (no trailing slash).
+- Inspect browser console for origin mismatch.
 
-### Issue: JWT authentication fails
-- Ensure `JWT_SECRET` is set in backend `.env`
-- Check token is being sent in Authorization header
-- Verify token hasn't expired (default: 1 day)
+JWT auth fails:
+- Ensure `JWT_SECRET` set in backend.
+- Ensure the Authorization header is `Bearer <token>`.
 
-### Issue: Password validation errors
-- Password must meet all requirements (8+ chars, upper, lower, number, special)
-- Check console for specific validation failures
-- Backend rejects weak passwords even if frontend is bypassed
+Password validation errors:
+- Password must be 8+ chars, contain uppercase, lowercase, number, and special char.
+- Backend enforces rules even if frontend validation is bypassed.
 
-### Issue: Flights not showing
-- Run `npm run seed` in backend to populate database
-- Check MongoDB Atlas for `flights` collection
-- Verify API endpoint is reachable
+Flights not showing:
+- Run `npm run seed` (backend) to populate demo flights.
+- Check `flights` collection in MongoDB.
 
 ---
 
-## 📸 Screenshots
+## 🤝 Contributing & Governance
 
-### Home Page - Flight Search
-Modern search interface with source, destination, and date filters.
+Contributions are welcome. Please follow:
+1. Fork the repo.
+2. Create a feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit: `git commit -m "Add AmazingFeature"`
+4. Push and open a Pull Request.
 
-### Wallet Dashboard
-Track spending with charts and detailed transaction history.
+Files to include in repo for community:
+- CONTRIBUTING.md — contribution guidelines
+- CODE_OF_CONDUCT.md — community behavior expectations
+- ISSUE_TEMPLATE(s) — for bug/feature requests
 
-### Registration with Password Strength
-Real-time visual feedback for password requirements.
-
-### Booking Management
-View all bookings with status, PNR, and download options.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Links:
+- Issues: https://github.com/kritikasapkota/udaan-codebase/issues
+- Contributing: https://github.com/kritikasapkota/udaan-codebase/blob/main/CONTRIBUTING.md (create this if missing)
+- Code of Conduct: https://github.com/kritikasapkota/udaan-codebase/blob/main/CODE_OF_CONDUCT.md (create this if missing)
 
 ---
 
-## 📄 License
+## 📄 License & Author
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) file for details.
+Licensed under the MIT License — see [LICENSE](https://github.com/kritikasapkota/udaan-codebase/blob/main/LICENSE).
 
----
-
-## 👨‍💻 Author
-
-**Udaan Flight Booking Team**
+Author: Udaan Flight Booking Team — repository maintained at https://github.com/kritikasapkota/udaan-codebase
 
 ---
 
 ## 🙏 Acknowledgments
 
-- MongoDB Atlas for database hosting
-- Vercel for frontend hosting
-- Render for backend hosting
+- MongoDB Atlas, Vercel, Render
 - React and Node.js communities
 
 ---
@@ -376,9 +400,9 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) file for 
 ## 📞 Support
 
 For issues or questions:
-- Open an [Issue](https://github.com/YOUR_USERNAME/udaan-flight-booking/issues)
-- Check [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for deployment help
+- Open an issue: https://github.com/kritikasapkota/udaan-codebase/issues
+- Read DEPLOYMENT_GUIDE.md for deployment-specific help
 
 ---
 
-**Built with ❤️ using the MERN Stack**
+Built with ❤️ using the MERN Stack
