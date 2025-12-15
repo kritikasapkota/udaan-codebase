@@ -6,6 +6,25 @@ exports.register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
     
+    // Basic field validation
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Name, email and password are required' });
+    }
+
+    // Strong password policy: min 8 chars, uppercase, lowercase, number, special
+    const hasMinLength = typeof password === 'string' && password.length >= 8;
+    const hasUpper = /[A-Z]/.test(password || '');
+    const hasLower = /[a-z]/.test(password || '');
+    const hasNumber = /\d/.test(password || '');
+    const hasSpecial = /[^A-Za-z0-9]/.test(password || '');
+
+    if (!(hasMinLength && hasUpper && hasLower && hasNumber && hasSpecial)) {
+      return res.status(400).json({
+        message:
+          'Weak password: use at least 8 characters with uppercase, lowercase, number, and special character.'
+      });
+    }
+    
     let user = await User.findOne({ email });
     if (user) return res.status(400).json({ message: 'User already exists' });
 

@@ -46,7 +46,7 @@ export const authService = {
 
 // FLIGHTS
 export const flightService = {
-  search: (params) => api.get('/flights/search', { params }),
+  search: (params) => api.get('/flights', { params }),
   getById: (id) => api.get(`/flights/${id}`),
 };
 
